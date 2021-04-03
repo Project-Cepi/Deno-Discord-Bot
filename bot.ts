@@ -1,20 +1,23 @@
 import { startBot } from "https://deno.land/x/discordeno/mod.ts";
+import * as log from "https://deno.land/std@0.92.0/log/mod.ts";
 
-const prefix = "t!"
+import { config } from "https://deno.land/x/dotenv/mod.ts";
+
+const prefix = config().PREFIX
 
 startBot({
-	token: "NzI2MTA1MzY5ODMwNzUyMzU4.XvYcUg.2R23IfQh8rCefRk7Xfub8rXyf90",
+	token: config().TOKEN,
 	intents: ["GUILDS", "GUILD_MESSAGES"],
 	eventHandlers: {
 		ready() {
-			console.log("Successfully connected to gateway");
+			log.info("Successfully connected to gateway");
 		},
 		messageCreate(message) {
-			if (message.startsWith(prefix)) {
+			if (message.content.startsWith(prefix)) {
 
-				const command = message.substring(prefix.length)
+				const command = message.content.substring(prefix.length)
 
-				message.reply("Pong using Discordeno!");
+				console.log(command)
 			}
 		},
 	},
