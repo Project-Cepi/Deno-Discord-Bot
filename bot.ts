@@ -1,21 +1,19 @@
 import { startBot } from "https://deno.land/x/discordeno/mod.ts";
 import * as log from "https://deno.land/std@0.92.0/log/mod.ts";
 
-import { config } from "https://deno.land/x/dotenv/mod.ts";
-
-const prefix = config().PREFIX
+import config from './config/index.ts'
 
 startBot({
-	token: config().TOKEN,
+	token: config.token,
 	intents: ["GUILDS", "GUILD_MESSAGES"],
 	eventHandlers: {
 		ready() {
 			log.info("Successfully connected to gateway");
 		},
 		messageCreate(message) {
-			if (message.content.startsWith(prefix)) {
+			if (message.content.startsWith(config.prefix)) {
 
-				const command = message.content.substring(prefix.length)
+				const command = message.content.substring(config.prefix.length)
 
 				console.log(command)
 			}
