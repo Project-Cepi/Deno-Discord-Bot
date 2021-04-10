@@ -1,5 +1,5 @@
-import { startBot } from "https://deno.land/x/discordeno/mod.ts";
-import * as log from "https://deno.land/std@0.92.0/log/mod.ts";
+import { startBot } from "discordeno/mod.ts";
+import * as log from "logger";
 
 import config from './config/index.ts'
 
