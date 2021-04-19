@@ -1,4 +1,5 @@
-import { startBot } from "discordeno/mod.ts";
+import { startBot, getUser, botID } from "discordeno";
+import { handleMessage } from './chatbot/messageHandler.ts';
 import * as log from "logger";
 
 import config from './config/index.ts'
@@ -12,12 +13,15 @@ startBot({
 		ready() {
 			log.info("Successfully connected to gateway");
 		},
-		messageCreate(message) {
-			if (regex.test(message.content) && !message.author.bot) {
+		async messageCreate(message) {
 
+			if (
+				(regex.test(message.content) && !message.author.bot)
+				|| message.mentions.includes(botID)
+			) {
 				const content = message.content.replace(regex, "") // remove the cepi prefix
 
-				message.reply(content)
+				await handleMessage(content, message)
 			}
 		},
 	},
