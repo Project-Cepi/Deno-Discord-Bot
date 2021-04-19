@@ -3,6 +3,8 @@ import * as log from "logger";
 
 import config from './config/index.ts'
 
+const regex = /^(hey|ok)? ?cepi[, ]? */
+
 startBot({
 	token: config.token,
 	intents: ["GUILDS", "GUILD_MESSAGES"],
@@ -11,11 +13,11 @@ startBot({
 			log.info("Successfully connected to gateway");
 		},
 		messageCreate(message) {
-			if (message.content.startsWith(config.prefix)) {
+			if (regex.test(message.content) && !message.author.bot) {
 
-				const command = message.content.substring(config.prefix.length)
+				const content = message.content.replace(regex, "") // remove the cepi prefix
 
-				console.log(command)
+				message.reply(content)
 			}
 		},
 	},
