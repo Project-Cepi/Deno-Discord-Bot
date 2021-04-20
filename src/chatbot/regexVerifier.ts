@@ -1,1 +1,1 @@
-export const regex = /^(hey|ok)? ?cepi[, ]? */
+export const regex = /^(hey|ok)? ?cepi[, ]? */i
