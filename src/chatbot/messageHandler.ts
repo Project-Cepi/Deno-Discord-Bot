@@ -11,7 +11,13 @@ export async function handleMessage(processedText: string, originalMessage: Mess
 	const response = createMessage(processedText)
 
 	if (!response) originalMessage.addReaction(questionEmoji)
-	else await originalMessage.reply(response)
+	else await originalMessage.channel?.send({
+		mentions: {
+			repliedUser: false
+		},
+		replyMessageID: originalMessage.id,
+		content: response
+	})
 
 	await originalMessage.removeReaction(writeEmoji)
 	
