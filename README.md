@@ -3,7 +3,7 @@ Discord bot, written in deno.
 
 ## Start
 
-To start the bot, just do `deno run --allow-net=deno.land,gateway.discord.gg,discord.com --allow-read=.env.defaults,.env --import-map import_map.json src/bot.ts`
+To start the bot, just do `deno run --allow-net=deno.land,gateway.discord.gg,discord.com --allow-read=.env.defaults,.env,data --import-map import_map.json src/bot.ts`
 
 | Permission                                           | Why is it needed?                         |
 |------------------------------------------------------|-------------------------------------------|
