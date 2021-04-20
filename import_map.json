@@ -3,6 +3,7 @@
 		"discordeno": "https://deno.land/x/discordeno/mod.ts",
 		"logger": "https://deno.land/std@0.92.0/log/mod.ts",
 		"config": "https://deno.land/x/dotenv/mod.ts",
+		"asserts": "https://deno.land/std@0.93.0/testing/asserts.ts",
 		"src/": "./src/",
 		"./src/": "./src/"
 	}
