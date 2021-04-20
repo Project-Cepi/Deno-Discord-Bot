@@ -1,5 +1,10 @@
 import { regex } from 'src/chatbot/regexVerifier.ts'
-import { assertEquals } from "https://deno.land/std@0.93.0/testing/asserts.ts";
+import { assertEquals, assertMatch, assertNotMatch } from "https://deno.land/std@0.93.0/testing/asserts.ts";
+
+const assertRegexReplacement = (input: string, expected: string = userInput) => {
+	assertEquals(input.replace(regex, ""), userInput)
+	assertMatch(input, regex)
+}
 
 const userInput = "how are you?"
 
@@ -7,16 +12,18 @@ Deno.test({
 	name: "check if regex verifies matches correctly",
 	fn: () => {
 
-		const assertRegexMatches = (input: string, expected: string = userInput) => assertEquals(input.replace(regex, ""), userInput)
+		assertRegexReplacement(`ok cepi ${userInput}`, userInput)
+		assertRegexReplacement(`ok cepi, ${userInput}`, userInput)
 
-		assertRegexMatches(`ok cepi ${userInput}`, userInput)
-		assertRegexMatches(`ok cepi, ${userInput}`, userInput)
+		assertRegexReplacement(`hey cepi ${userInput}`, userInput)
+		assertRegexReplacement(`hey cepi, ${userInput}`, userInput)
 
-		assertRegexMatches(`hey cepi ${userInput}`, userInput)
-		assertRegexMatches(`hey cepi, ${userInput}`, userInput)
+		assertRegexReplacement(`cepi ${userInput}`, userInput)
+		assertRegexReplacement(`cepi, ${userInput}`, userInput)
 
-		assertRegexMatches(`cepi ${userInput}`, userInput)
-		assertRegexMatches(`cepi, ${userInput}`, userInput)
+		assertNotMatch("i love cepi", regex)
+
+		assertNotMatch("what is cepi", regex)
 
 	},
 });
