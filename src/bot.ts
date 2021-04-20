@@ -1,4 +1,4 @@
-import { startBot, getUser, botID } from "discordeno";
+import { startBot, botID } from "discordeno";
 import { handleMessage } from './chatbot/messageHandler.ts';
 import * as log from "logger";
 
@@ -11,7 +11,7 @@ startBot({
 	intents: ["GUILDS", "GUILD_MESSAGES"],
 	eventHandlers: {
 		ready() {
-			log.info("Successfully connected to gateway");
+			log.info(`Successfully connected ${botID} to gateway`);
 		},
 		async messageCreate(message) {
 
