@@ -4,7 +4,7 @@ import * as log from "logger";
 
 import config from './config/index.ts'
 
-const regex = /^(hey|ok)? ?cepi[, ]? */
+export const regex = /^(hey|ok)? ?cepi[, ]? */
 
 startBot({
 	token: config.token,
