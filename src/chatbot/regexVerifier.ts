@@ -1,0 +1,1 @@
+export const regex = /^(hey|ok)? ?cepi[, ]? */

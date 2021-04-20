@@ -3,8 +3,7 @@ import { handleMessage } from './chatbot/messageHandler.ts';
 import * as log from "logger";
 
 import config from './config/index.ts'
-
-export const regex = /^(hey|ok)? ?cepi[, ]? */
+import { regex } from './chatbot/regexVerifier.ts'
 
 startBot({
 	token: config.token,

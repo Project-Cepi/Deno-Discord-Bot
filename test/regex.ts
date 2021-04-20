@@ -1,8 +1,8 @@
-import { regex } from 'src/bot.ts'
+import { regex } from 'src/chatbot/regexVerifier.ts'
 import { assertEquals } from "https://deno.land/std@0.93.0/testing/asserts.ts";
 
 Deno.test({
-	name: "hello world #2",
+	name: "check if regex verifies matches correctly",
 	fn: () => {
 		const x = 1 + 2;
 		assertEquals(x, 3);
