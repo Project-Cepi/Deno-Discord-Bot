@@ -1,27 +1,18 @@
 import type { Message } from "discordeno";
-import { data } from './dataProcessor.ts';
-import { matchPercentage } from './utils/closestMatch.ts'
+import { createMessage } from './messageCreation.ts'
+
+const writeEmoji = "📝"
+const questionEmoji = "❓"
 
 export async function handleMessage(processedText: string, originalMessage: Message) {
 
-	await originalMessage.addReaction("📝")
+	await originalMessage.addReaction(writeEmoji)
 
-	const matchedKey = [...data.keys()].sort((a, b) => matchPercentage(a, processedText) - matchPercentage(b, processedText))[0]
+	const response = createMessage(processedText)
 
-	if (!matchedKey) {
-		await originalMessage.reply("For some reason, no keys were found?")
-		return;
-	}
+	if (!response) originalMessage.addReaction(questionEmoji)
+	else await originalMessage.reply(response)
 
-	const match = data.get(matchedKey)
-
-	if (!match) {
-		await originalMessage.reply("This shouldn't happen.")
-		return;
-	}
-
-	const randomMatch = match[Math.floor(Math.random() * match.length)]; // "random match"
-
-	await originalMessage.reply(randomMatch);
+	await originalMessage.removeReaction(writeEmoji)
 	
 }
