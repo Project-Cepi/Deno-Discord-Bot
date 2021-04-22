@@ -3,6 +3,10 @@ import { data } from './dataProcessor.ts';
 import { matchPercentage } from './utils/closestMatch.ts'
 import { process } from './preprocessors/preprocessor.ts'
 
+function cleanMessage(message: string): string {
+	return message.toLowerCase().trim()
+}
+
 /**
  * Creates a response from the given input
  * 
@@ -11,7 +15,11 @@ import { process } from './preprocessors/preprocessor.ts'
  * @return The response if any (null if none)
  */
 export async function createMessage(text: string): Promise<string | null> {
+
+	text = cleanMessage(text)
+
 	const matchedKey = [...data.keys()] // iterator -> array
+		.map(string => cleanMessage(string))
 		.sort((a, b) => matchPercentage(a, text) - matchPercentage(b, text)) // sort to closest text
 		[0] // get first element
 
