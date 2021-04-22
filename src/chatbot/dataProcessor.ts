@@ -1,6 +1,8 @@
 import { parse } from "toml";
 import * as log from "logger";
 
+const data: Map<string, string[]> = new Map();
+
 for await (const fileEntry of Deno.readDir("data")) {
 
 	if (fileEntry.isDirectory) continue;
@@ -16,4 +18,6 @@ for await (const fileEntry of Deno.readDir("data")) {
 	})
 }
 
-export const data: Map<string, string[]> = new Map();
+export function getData() {
+	return data
+}
