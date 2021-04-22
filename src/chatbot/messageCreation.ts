@@ -1,6 +1,6 @@
 
 import { getData } from './dataProcessor.ts';
-import { matchPercentage } from './utils/closestMatch.ts'
+import { closestMatch } from './utils/closestMatch.ts'
 import { process } from './preprocessors/preprocessor.ts'
 
 function cleanMessage(message: string): string {
@@ -18,10 +18,10 @@ export async function createMessage(text: string): Promise<string | null> {
 
 	text = cleanMessage(text)
 
-	const matchedKey = [...getData().keys()] // iterator -> array
-		.map(string => cleanMessage(string))
-		.sort((a, b) => matchPercentage(a, text) - matchPercentage(b, text)) // sort to closest text
-		[0] // get first element
+	const matchedKey = closestMatch(text, 
+		[...getData().keys()] // iterator -> array
+			.map(string => cleanMessage(string))
+		)
 
 	if (!matchedKey) { // make sure there is a key
 		return null

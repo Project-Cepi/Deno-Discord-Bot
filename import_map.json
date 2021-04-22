@@ -5,7 +5,7 @@
 		"config": "https://deno.land/x/dotenv/mod.ts",
 		"asserts": "https://deno.land/std@0.93.0/testing/asserts.ts",
 		"toml": "https://deno.land/std@0.93.0/encoding/toml.ts",
-		"fuse": "https://deno.land/x/fuse@v6.0.4/dist/fuse.esm.min.js",
+		"fuse": "https://deno.land/x/fuse@v6.4.1/dist/fuse.esm.min.js",
 		"src/": "./src/",
 		"./src/": "./src/"
 	}
