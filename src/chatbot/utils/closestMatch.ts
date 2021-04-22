@@ -2,6 +2,9 @@ export function matchPercentage(first: string, second: string): number {
 	if (first.length == 0) return first.length
 	if (second.length == 0) return second.length 
 
+	first = first.toLowerCase()
+	second = second.toLowerCase()
+
 	const matrix = [];
 
 	// increment along the first column of each row
