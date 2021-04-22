@@ -9,7 +9,7 @@ for await (const fileEntry of Deno.readDir("data")) {
 
 	const file = parse(await Deno.readTextFile("data/" + fileEntry.name))
 
-	log.info("loading " + fileEntry.name)
+	log.debug("loading " + fileEntry.name)
 
 	Object.keys(file).forEach(key => {
 		if (!file[key]) return;

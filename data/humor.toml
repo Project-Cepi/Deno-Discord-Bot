@@ -1,3 +1,17 @@
 "What is humor?" = [
 	"An emotion associated with laughter."
 ]
+
+"Tell me a joke." = [
+	"{joke}",
+	"{joke}",
+	"{joke}",
+	"{joke}",
+	"{joke}",
+	"{joke}",
+	"{joke}",
+	"{joke}",
+	"{joke}",
+	"You.",
+	"I'm talking to one right now."
+]

@@ -1,6 +1,7 @@
 
 import { data } from './dataProcessor.ts';
 import { matchPercentage } from './utils/closestMatch.ts'
+import { process } from './preprocessors/preprocessor.ts'
 
 /**
  * Creates a response from the given input
@@ -9,7 +10,7 @@ import { matchPercentage } from './utils/closestMatch.ts'
  * 
  * @return The response if any (null if none)
  */
-export function createMessage(text: string): string | null {
+export async function createMessage(text: string): Promise<string | null> {
 	const matchedKey = [...data.keys()] // iterator -> array
 		.sort((a, b) => matchPercentage(a, text) - matchPercentage(b, text)) // sort to closest text
 		[0] // get first element
@@ -24,6 +25,6 @@ export function createMessage(text: string): string | null {
 		return null
 	}
 
-	return match[Math.floor(Math.random() * match.length)] // get a random match
+	return await process(match[Math.floor(Math.random() * match.length)]) // get a random match
 	
 }

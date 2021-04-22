@@ -8,7 +8,7 @@ export async function handleMessage(processedText: string, originalMessage: Mess
 
 	await originalMessage.addReaction(writeEmoji)
 
-	const response = createMessage(processedText)
+	const response = await createMessage(processedText)
 
 	if (!response) originalMessage.addReaction(questionEmoji)
 	else await originalMessage.channel?.send({
