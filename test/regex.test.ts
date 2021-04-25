@@ -1,7 +1,7 @@
 import { regex } from 'src/chatbot/regexVerifier.ts'
 import { assertEquals, assertMatch, assertNotMatch } from "asserts";
 
-const assertRegexReplacement = (input: string, expected: string = userInput) => {
+const assertRegexReplacement = (input: string) => {
 	assertEquals(input.replace(regex, ""), userInput)
 	assertMatch(input, regex)
 }
@@ -12,14 +12,14 @@ Deno.test({
 	name: "check if regex verifies matches correctly",
 	fn: () => {
 
-		assertRegexReplacement(`ok cepi ${userInput}`, userInput)
-		assertRegexReplacement(`ok cepi, ${userInput}`, userInput)
+		assertRegexReplacement(`ok cepi ${userInput}`)
+		assertRegexReplacement(`ok cepi, ${userInput}`)
 
-		assertRegexReplacement(`hey cepi ${userInput}`, userInput)
-		assertRegexReplacement(`hey cepi, ${userInput}`, userInput)
+		assertRegexReplacement(`hey cepi ${userInput}`)
+		assertRegexReplacement(`hey cepi, ${userInput}`)
 
-		assertRegexReplacement(`cepi ${userInput}`, userInput)
-		assertRegexReplacement(`cepi, ${userInput}`, userInput)
+		assertRegexReplacement(`cepi ${userInput}`)
+		assertRegexReplacement(`cepi, ${userInput}`)
 
 		assertNotMatch("i love cepi", regex)
 
