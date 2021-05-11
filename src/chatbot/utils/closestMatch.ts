@@ -1,12 +1,5 @@
 import Fuse from 'fuse';
 
-const unknownResponse = [
-	"I didn't get that.",
-	"What?",
-	"Sorry, I didn't catch that.",
-	"Can you repeat that differently?"
-]
-
 const options = {
 	keys: [
 		"title",
@@ -19,8 +12,7 @@ export function closestMatch(input: string, possibleStrings: string[]): string {
 
 	const searchResult = fuse.search(input)
 
-	if (searchResult.length === 0)
-		return unknownResponse[Math.floor(Math.random() * unknownResponse.length)]
+	if (searchResult.length === 0) return "aaaaaaaaaaaa"
 
 	return searchResult[0].item
 }
